@@ -1,0 +1,60 @@
+﻿@model IEnumerable<LaptopClient.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+
+    @using (Html.BeginForm("SearchBook2s", "Book"))
+    {
+        <div>
+            PriceMin: @Html.TextBox("Pmin", null, new { @required ="required", @type = "number", @min = 1, @max = 12000 })
+            PriceMax: @Html.TextBox("Pmax", null, new { @required ="required", @type = "number", @min = 1, @max = 12000 })
+            <input type="submit" value="Search" />
+        </div>
+    }
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LaptopCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LaptopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FingerPrint)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LaptopCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LaptopName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FingerPrint)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Delete", "Delete", new {  id=item.LaptopCode })
+        </td>
+    </tr>
+}
+
+</table>
